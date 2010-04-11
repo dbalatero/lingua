@@ -1,6 +1,8 @@
 = lingua
 
-Description goes here.
+This library is originally from http://pressure.to/ruby, by Alex Fenton <alex@pressure.to>.
+
+It is currently maintained by David Balatero <dbalatero@gmail.com>.
 
 == Note on Patches/Pull Requests
  
