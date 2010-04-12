@@ -1,3 +1,5 @@
+require 'lingua/en/syllable/guess'
+
 module Lingua
   module EN
     # The module Lingua::EN::Syllable contains a single class method, +syllable+,
@@ -10,24 +12,11 @@ module Lingua
     # is passed, it will return the number of syllables as determined by the 
     # module Lingua::EN::Syllable::Guess. For more details, see there and
     # Lingua::EN::Syllable::Dictionary.
+    #
+    # dbalatero: removed dictionary.
     module Syllable
-      # use dictionary if possible
-      begin
-        require 'lingua/en/syllable/dictionary.rb'
-        require 'lingua/en/syllable/guess.rb'
-
-        def self.syllables(word)
-          begin
-            return Dictionary::syllables(word)
-          rescue Dictionary::LookUpError
-            return Guess::syllables(word)
-          end
-        end
-      rescue LoadError # dictionary not available?
-        require 'lingua/en/syllable/guess.rb'
-        def self.syllables(word)
-          Guess::syllables word
-        end
+      def self.syllables(word)
+        Guess::syllables word
       end
     end
   end
