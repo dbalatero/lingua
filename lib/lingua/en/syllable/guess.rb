@@ -1,33 +1,39 @@
 module Lingua
   module EN
     module Syllable
-      # Uses english word patterns to guess the number of syllables. A single module
-      # method is made available, +syllables+, which, when passed an english word,
-      # will return the number of syllables it estimates are in the word.
-      # English orthography (the representation of spoken sounds as written signs) is
-      # not regular. The same spoken sound can be represented in multiple different
-      # ways in written English (e.g. rough/cuff), and the same written letters
-      # can be pronounced in different ways in different words (e.g. rough/bough).
-      # As the same series of letters can be pronounced in different ways, it is not
-      # possible to write an algorithm which can always guess the number of syllables
-      # in an english word correctly. However, it is possible to use frequently
-      # recurring patterns in english (such as "a final -e is usually silent") to
-      # guess with a level of accuracy that is acceptable for applications like 
-      # syllable counting for readability scoring. This module implements such an
-      # algorithm.
-      # This module is inspired by the Perl Lingua::EN::Syllable module. However, it
-      # uses a different (though not larger) set of patterns to compensate for the
-      # 'special cases' which arise out of English's irregular orthography. A number
-      # of extra patterns (particularly for derived word forms) means that this module
-      # is somewhat more accurate than the Perl original. It also omits a number of
-      # patterns found in the original which seem to me to apply to such a small number
-      # of cases, or to be of dubious value. Testing the guesses against the Carnegie
-      # Mellon Pronouncing Dictionary, this module guesses right around 90% of the
+      # Uses English word patterns to guess the number of syllables. A single
+      # module method is made available, +syllables+, which, when passed an
+      # English word, will return the number of syllables it estimates are in
+      # the word.
+      #
+      # English orthography (the representation of spoken sounds as written
+      # signs) is not regular. The same spoken sound can be represented in
+      # multiple different ways in written English (e.g. rough/cuff), and the
+      # same written letters can be pronounced in different ways in different
+      # words (e.g. rough/bough).
+      #
+      # As the same series of letters can be pronounced in different ways, it is
+      # not possible to write an algorithm which can always guess the number of
+      # syllables in an english word correctly. However, it is possible to use
+      # frequently recurring patterns in english (such as "a final -e is usually
+      # silent") to guess with a level of accuracy that is acceptable for
+      # applications like syllable counting for readability scoring. This module
+      # implements such an algorithm.
+      #
+      # This module is inspired by the Perl Lingua::EN::Syllable module.
+      # However, it uses a different (though not larger) set of patterns to
+      # compensate for the 'special cases' which arise out of English's
+      # irregular orthography. A number of extra patterns (particularly for
+      # derived word forms) means that this module is somewhat more accurate
+      # than the Perl original. It also omits a number of patterns found in the
+      # original which seem to me to apply to such a small number of cases, or
+      # to be of dubious value. Testing the guesses against the Carnegie Mellon
+      # Pronouncing Dictionary, this module guesses right around 90% of the
       # time, as against about 85% of the time for the Perl module. However, the
-      # dictionary contains a large number of foreign loan words and proper names, and
-      # so when the algorithm is tested against 'real world' english, its accuracy
-      # is a good deal better. Testing against a range of samples, it guesses right 
-      # about 95-97% of the time.
+      # dictionary contains a large number of foreign loan words and proper
+      # names, and so when the algorithm is tested against 'real world' english,
+      # its accuracy is a good deal better. Testing against a range of samples,
+      # it guesses right about 95-97% of the time.
       module Guess
         # special cases - 1 syllable less than expected
         SubSyl = [

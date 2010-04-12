@@ -31,7 +31,6 @@ module Lingua
       # or "!" followed by whitespace. Sequences of full stops (such as an
       # ellipsis marker "..." and stops after a known abbreviation are ignored.
       def self.sentences(text)
-
         text = text.dup
 
         # initial split after punctuation - have to preserve trailing whitespace
