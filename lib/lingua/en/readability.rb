@@ -12,8 +12,8 @@ module Lingua
       # object which gives access to the
       def initialize(text)
         @text                = text.dup
-        @paragraphs          = text.split(/\n\s*\n\s*/)
-        @sentences           = Lingua::EN::Sentence.sentences(@text)
+        @paragraphs          = Lingua::EN::Paragraph.paragraphs(self.text)
+        @sentences           = Lingua::EN::Sentence.sentences(self.text)
         @words               = []
         @frequencies         = {}
         @frequencies.default = 0
