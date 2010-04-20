@@ -4,6 +4,8 @@ This library is originally from http://pressure.to/ruby, by Alex Fenton <alex@pr
 
 It is currently maintained by David Balatero <dbalatero@gmail.com>.
 
+Slowly but surely, specs are being added (original codebase was not tested), as well as better functionality.
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
