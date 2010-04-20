@@ -57,7 +57,10 @@ module Lingua
         text.gsub!(@abbr_regex) { $1 << '.' }
 
         # Split on EOS marker, get rid of trailing whitespace.
-        text.split(EOS).map { | sentence | sentence.strip }
+        # Remove empty sentences.
+        text.split(EOS).
+          map { |sentence| sentence.strip }.
+          delete_if { |sentence| sentence.nil? || sentence.empty? }
       end
 
       # Adds a list of abbreviations to the list that's used to detect false
