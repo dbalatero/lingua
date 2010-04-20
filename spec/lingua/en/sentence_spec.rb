@@ -4,6 +4,26 @@ describe Lingua::EN::Sentence do
   klass = Lingua::EN::Sentence
 
   describe "#sentences" do
+    describe "multi-paragraph text" do
+      before(:each) do
+        text = "As Milton Bradley once said, \"board games are the shit.\" And I'm inclined to agree. \"Why can't we be friends?\"\n\n"
+        text << "Visit http://www.google.com and check out my site. Thanks very much!"
+        @sentences = klass.sentences(text)
+      end
+
+      it "should get the correct number of sentences" do
+        @sentences.should have(5).things
+      end
+
+      it "should get the correct sentences" do
+        @sentences[0].should == "As Milton Bradley once said, \"board games are the shit.\""
+        @sentences[1].should == "And I'm inclined to agree."
+        @sentences[2].should == "\"Why can't we be friends?\""
+        @sentences[3].should == "Visit http://www.google.com and check out my site."
+        @sentences[4].should == "Thanks very much!"
+      end
+    end
+
     describe "quoted sentences" do
       before(:each) do
         text = "As Milton Bradley once said, \"board games are the shit.\" And I'm inclined to agree. \"Why can't we be friends?\""
