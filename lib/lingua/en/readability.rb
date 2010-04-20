@@ -3,7 +3,7 @@ module Lingua
     # The class Lingua::EN::Readability takes English text and analyses formal
     # characteristic
     class Readability
-      attr_reader :text, :paragraphs, :sentences, :words,  :frequencies
+      attr_reader :text, :paragraphs, :sentences, :words, :frequencies
 
       # The constructor accepts the text to be analysed, and returns a report
       # object which gives access to the
@@ -22,25 +22,25 @@ module Lingua
       # The number of paragraphs in the sample. A paragraph is defined as a
       # newline followed by one or more empty or whitespace-only lines.
       def num_paragraphs
-        @paragraphs.length
+        paragraphs.length
       end
 
       # The number of sentences in the sample. The meaning of a "sentence" is
       # defined by Lingua::EN::Sentence.
       def num_sentences
-        @sentences.length
+        sentences.length
       end
 
       # The number of characters in the sample.
       def num_chars
-        @text.length
+        text.length
       end
       alias :num_characters :num_chars
 
       # The total number of words used in the sample. Numbers as digits are not
       # counted.
       def num_words
-        @words.length
+        words.length
       end
 
       # The total number of syllables in the text sample. Just for completeness.
@@ -65,7 +65,7 @@ module Lingua
 
       # The average number of words per sentence.
       def words_per_sentence
-        @words.length.to_f / @sentences.length.to_f
+        words.length.to_f / sentences.length.to_f
       end
 
       # The average number of syllables per word. The syllable count is
@@ -73,7 +73,7 @@ module Lingua
       # accurate, especially if the Carnegie-Mellon Pronouncing Dictionary
       # is not installed.
       def syllables_per_word
-        @syllables.to_f / @words.length.to_f
+        @syllables.to_f / words.length.to_f
       end
 
       # Flesch-Kincaid level of the text sample. This measure scores text based
@@ -102,7 +102,7 @@ module Lingua
       # The percentage of words that are defined as "complex" for the purpose of
       # the Fog Index. This is non-hyphenated words of three or more syllabes.
       def percent_fog_complex_words
-        ( @complex_words.to_f / @words.length.to_f ) * 100
+        ( @complex_words.to_f / words.length.to_f ) * 100
       end
 
       # Return a nicely formatted report on the sample, showing most the useful
@@ -124,13 +124,17 @@ module Lingua
 
       private
       def count_words
-        for match in @text.scan(/\b([a-z][a-z\-']*)\b/i)
+        @text.scan(/\b([a-z][a-z\-']*)\b/i).each do |match|
           word = match[0]
-          @words.push word
+          @words << word
+
+          # up frequency counts
           @frequencies[word] += 1
+
+          # syllable counts
           syllables = Lingua::EN::Syllable.syllables(word)
           @syllables += syllables
-          if syllables > 2 && word !~ /-/
+          if syllables > 2 && !word.include?('-')
             @complex_words += 1 # for Fog Index
           end
         end
