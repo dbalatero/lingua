@@ -29,7 +29,7 @@ module Lingua
       ABBR_DETECT = /(?:\s(?:(?:(?:\w\.){2,}\w?)|(?:\w\.\w)))/ unless defined?(ABBR_DETECT)
 
       # Finds punctuation that ends paragraphs.
-      PUNCTUATION_DETECT = /([\.?!](?:\"|\'|\)|\]|\})?)(\s+)/ unless defined?(PUNCTUATION_DETECT)
+      PUNCTUATION_DETECT = /((?:[\.?!]|[\r\n]+)(?:\"|\'|\)|\]|\})?)(\s+)/ unless defined?(PUNCTUATION_DETECT)
 
       CORRECT_ABBR = /(#{ABBR_DETECT})#{EOS}(\s+[a-z0-9])/
 

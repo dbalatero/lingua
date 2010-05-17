@@ -101,6 +101,25 @@ describe Lingua::EN::Sentence do
       end
     end
 
+    describe "short sentences w/ line breaks" do
+      before(:each) do
+        @doc = <<-EOF
+        So how does the 401(k) plan work?  Let's see -
+
+        The 401(k) consists of - first, asking your employer to set aside a portion (upto 15% of your total income) in keeping with the plan.
+        EOF
+        @sentences = klass.sentences(@doc)
+      end
+
+      it "should find 3 sentences" do
+        @sentences.should have(3).things
+      end
+
+      it "should stop at line breaks" do
+        @sentences[1].should == "Let's see -"
+      end
+    end
+
     describe "sentences with URLs and abbreviation" do
       before(:each) do
         text = "Many of these leading names now have their own website, e.g.  http://www.kaptest.com/. Hello, e.g. you don't know what you mean. I'm so angry about what you said about the U.S.A. or the u.S. or the U.S.S.R. ok."
