@@ -78,7 +78,7 @@ module Lingua
       end
 
       def self.set_abbr_regex!
-        @abbr_regex = /(#{abbreviations.join("|")})\.#{EOS}/i
+        @abbr_regex = / (#{abbreviations.join("|")})\.#{EOS}/i
       end
 
       initialize_abbreviations!
