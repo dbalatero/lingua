@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{lingua}
-  s.version = "0.6.1"
+  s.version = "0.6.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Balatero"]
-  s.date = %q{2010-05-17}
+  s.date = %q{2010-07-25}
   s.description = %q{Provides sentence splitting, syllable, and text-quality algorithms.}
   s.email = %q{dbalatero@gmail.com}
   s.extra_rdoc_files = [
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
      "lib/lingua/en/sentence.rb",
      "lib/lingua/en/syllable.rb",
      "lib/lingua/en/syllable/guess.rb",
+     "lingua.gemspec",
      "spec/lingua/en/paragraph_spec.rb",
      "spec/lingua/en/readability_spec.rb",
      "spec/lingua/en/sentence_spec.rb",
