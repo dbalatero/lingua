@@ -21,12 +21,6 @@ describe Lingua::EN::Readability do
     end
   end
 
-  describe "#occurrences" do
-    it "should return the correct count of occurrences of the word 'the'" do
-      @report.occurrences('the').should == 20
-    end
-  end
-
   describe "#num_paragraphs" do
     it "should return the correct count of paragraphs" do
       @report.num_paragraphs.should == 4
@@ -50,6 +44,18 @@ describe Lingua::EN::Readability do
       @report.num_unique_words.should == 141
     end
   end
+    
+  describe "#num_words" do
+    it "should be the correct count of words" do
+      @report.num_words.should == 255
+    end
+  end
+  
+  describe "#occurrences" do
+    it "should return the correct count of occurrences of the word 'the'" do
+      @report.occurrences('the').should == 20
+    end
+  end
   
   describe "#unique_words" do
     it "should be an array of unique words" do
@@ -58,13 +64,7 @@ describe Lingua::EN::Readability do
       unique_words.length.should == 141
     end
   end
-  
-  describe "#num_words" do
-    it "should be the correct count of words" do
-      @report.num_words.should == 255
-    end
-  end
-  
+
   describe "#words_per_sentence" do
     it "should be the correct count of words per sentence" do
       @report.words_per_sentence.should == 17.0
