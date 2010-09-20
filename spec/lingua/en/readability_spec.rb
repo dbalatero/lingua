@@ -15,6 +15,12 @@ describe Lingua::EN::Readability do
     @report = Lingua::EN::Readability.new(@text)
   end
 
+  describe "#num_chars" do
+    it "should be the correct count of characters" do
+      @report.num_chars.should == 1405
+    end
+  end
+
   describe "#num_paragraphs" do
     it "should return the correct count of paragraphs" do
       @report.num_paragraphs.should == 4
@@ -24,6 +30,44 @@ describe Lingua::EN::Readability do
   describe "#num_sentences" do
     it "should be the correct count of sentences" do
       @report.num_sentences.should == 15
+    end
+  end
+
+  describe "#num_syllables" do
+    it "should be the correct count of syllables" do
+      @report.num_syllables.should == 356
+    end
+  end
+
+  describe "#num_unique_words" do
+    it "should be the correct count of unique words" do
+      @report.num_unique_words.should == 141
+    end
+  end
+
+  describe "#num_words" do
+    it "should be the correct count of words" do
+      @report.num_words.should == 255
+    end
+  end
+
+  describe "#occurrences" do
+    it "should return the correct count of occurrences of the word 'the'" do
+      @report.occurrences('the').should == 20
+    end
+  end
+
+  describe "#unique_words" do
+    it "should be an array of unique words" do
+      unique_words = @report.unique_words
+      unique_words.should be_a(Array)
+      unique_words.length.should == 141
+    end
+  end
+
+  describe "#words_per_sentence" do
+    it "should be the correct count of words per sentence" do
+      @report.words_per_sentence.should == 17.0
     end
   end
 end
