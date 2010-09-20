@@ -32,7 +32,7 @@ describe Lingua::EN::Readability do
       @report.num_sentences.should == 15
     end
   end
-  
+
   describe "#num_syllables" do
     it "should be the correct count of syllables" do
       @report.num_syllables.should == 356
@@ -44,19 +44,19 @@ describe Lingua::EN::Readability do
       @report.num_unique_words.should == 141
     end
   end
-    
+
   describe "#num_words" do
     it "should be the correct count of words" do
       @report.num_words.should == 255
     end
   end
-  
+
   describe "#occurrences" do
     it "should return the correct count of occurrences of the word 'the'" do
       @report.occurrences('the').should == 20
     end
   end
-  
+
   describe "#unique_words" do
     it "should be an array of unique words" do
       unique_words = @report.unique_words
