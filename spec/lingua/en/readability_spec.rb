@@ -15,6 +15,24 @@ describe Lingua::EN::Readability do
     @report = Lingua::EN::Readability.new(@text)
   end
 
+  describe "#flesch" do
+    it "should be the correct Flesch Reading Ease" do
+      @report.flesch.should be_close(71.471, 0.001)
+    end
+  end
+
+  describe "#fog" do
+    it "should be the correct Gunning Fog Index" do
+      @report.fog.should be_close(10.721, 0.001)
+    end
+  end
+
+  describe "#kincaid" do
+    it "should be the correct Flesch-Kincaid grade level" do
+      @report.kincaid.should be_close(7.5, 0.1)
+    end
+  end
+
   describe "#num_chars" do
     it "should be the correct count of characters" do
       @report.num_chars.should == 1405
@@ -57,6 +75,18 @@ describe Lingua::EN::Readability do
     end
   end
 
+  describe "#percent_fog_complex_words" do
+    it "should be the correct percentage of complex words according to Fog Index" do
+      @report.percent_fog_complex_words.should be_close(9.803, 0.001)
+    end
+  end
+
+  describe "#syllables_per_word" do
+    it "should be the correct average of syllables per word" do
+      @report.syllables_per_word.should be_close(1.396, 0.001)
+    end
+  end
+
   describe "#unique_words" do
     it "should be an array of unique words" do
       unique_words = @report.unique_words
@@ -70,4 +100,5 @@ describe Lingua::EN::Readability do
       @report.words_per_sentence.should be_close(17.0, 0.001)
     end
   end
+  
 end
