@@ -67,7 +67,7 @@ describe Lingua::EN::Readability do
 
   describe "#words_per_sentence" do
     it "should be the correct count of words per sentence" do
-      @report.words_per_sentence.should == 17.0
+      @report.words_per_sentence.should be_close(17.0, 0.001)
     end
   end
 end
