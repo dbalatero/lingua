@@ -17,19 +17,19 @@ describe Lingua::EN::Readability do
 
   describe "#flesch" do
     it "should be the correct Flesch Reading Ease" do
-      @report.flesch.should be_close(71.471, 0.001)
+      @report.flesch.should be_within(0.001).of(71.471)
     end
   end
 
   describe "#fog" do
     it "should be the correct Gunning Fog Index" do
-      @report.fog.should be_close(10.721, 0.001)
+      @report.fog.should be_within(0.001).of(10.721)
     end
   end
 
   describe "#kincaid" do
     it "should be the correct Flesch-Kincaid grade level" do
-      @report.kincaid.should be_close(7.5, 0.1)
+      @report.kincaid.should be_within(0.1).of(7.5)
     end
   end
 
@@ -77,13 +77,13 @@ describe Lingua::EN::Readability do
 
   describe "#percent_fog_complex_words" do
     it "should be the correct percentage of complex words according to Fog Index" do
-      @report.percent_fog_complex_words.should be_close(9.803, 0.001)
+      @report.percent_fog_complex_words.should be_within(0.001).of(9.803)
     end
   end
 
   describe "#syllables_per_word" do
     it "should be the correct average of syllables per word" do
-      @report.syllables_per_word.should be_close(1.396, 0.001)
+      @report.syllables_per_word.should be_within(0.001).of(1.396)
     end
   end
 
@@ -97,8 +97,8 @@ describe Lingua::EN::Readability do
 
   describe "#words_per_sentence" do
     it "should be the correct count of words per sentence" do
-      @report.words_per_sentence.should be_close(17.0, 0.001)
+      @report.words_per_sentence.should be_within(0.001).of(17.0)
     end
   end
-  
+
 end
