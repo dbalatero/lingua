@@ -79,11 +79,19 @@ describe Lingua::EN::Readability do
     it "should be the correct percentage of complex words according to Fog Index" do
       @report.percent_fog_complex_words.should be_close(9.803, 0.001)
     end
+
+    it "should return 0 for empty text" do
+      Lingua::EN::Readability.new("").percent_fog_complex_words.should == 0
+    end
   end
 
   describe "#syllables_per_word" do
     it "should be the correct average of syllables per word" do
       @report.syllables_per_word.should be_close(1.396, 0.001)
+    end
+
+    it "should return 0 for empty text" do
+      Lingua::EN::Readability.new("").syllables_per_word.should == 0
     end
   end
 
@@ -99,6 +107,9 @@ describe Lingua::EN::Readability do
     it "should be the correct count of words per sentence" do
       @report.words_per_sentence.should be_close(17.0, 0.001)
     end
+
+    it "should return 0 for empty text" do
+      Lingua::EN::Readability.new("").words_per_sentence.should == 0
+    end
   end
-  
 end

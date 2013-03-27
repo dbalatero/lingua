@@ -65,7 +65,7 @@ module Lingua
 
       # The average number of words per sentence.
       def words_per_sentence
-        words.length.to_f / sentences.length.to_f
+        Readability.prevent_nan(words.length.to_f / sentences.length.to_f)
       end
 
       # The average number of syllables per word. The syllable count is
@@ -73,7 +73,7 @@ module Lingua
       # accurate, especially if the Carnegie-Mellon Pronouncing Dictionary
       # is not installed.
       def syllables_per_word
-        @syllables.to_f / words.length.to_f
+        Readability.prevent_nan(@syllables.to_f / words.length.to_f)
       end
 
       # Flesch-Kincaid level of the text sample. This measure scores text based
@@ -102,7 +102,8 @@ module Lingua
       # The percentage of words that are defined as "complex" for the purpose of
       # the Fog Index. This is non-hyphenated words of three or more syllabes.
       def percent_fog_complex_words
-        ( @complex_words.to_f / words.length.to_f ) * 100
+        percent = ( @complex_words.to_f / words.length.to_f ) * 100
+        Readability.prevent_nan(percent)
       end
 
       # Return a nicely formatted report on the sample, showing most the useful
@@ -137,6 +138,14 @@ module Lingua
           if syllables > 2 && !word.include?('-')
             @complex_words += 1 # for Fog Index
           end
+        end
+      end
+
+      def self.prevent_nan(value)
+        if value.respond_to?(:nan?) && value.nan?
+          0.to_f
+        else
+          value
         end
       end
     end
