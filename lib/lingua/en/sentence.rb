@@ -54,7 +54,7 @@ module Lingua
         text.gsub!(CORRECT_ABBR, "\\1\\2")
 
         # Correct abbreviations
-        text.gsub!(@abbr_regex) { $1 << '.' }
+        text.gsub!(@abbr_regex) { ' ' << $1 << '.' }
 
         # Split on EOS marker, get rid of trailing whitespace.
         # Remove empty sentences.
