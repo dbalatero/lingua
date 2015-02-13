@@ -115,7 +115,7 @@ module Lingua
         "Average words per sentence     %.2f \n" <<
         "Average syllables per word     %.2f \n\n" <<
         "Flesch score                   %2.2f \n" <<
-        "Flesh-Kincaid grade level      %2.2f \n" <<
+        "Flesch-Kincaid grade level     %2.2f \n" <<
         "Fog Index                      %2.2f \n",
           num_paragraphs, num_sentences, num_words, num_characters,
           words_per_sentence, syllables_per_word,
