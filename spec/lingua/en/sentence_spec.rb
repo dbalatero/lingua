@@ -139,7 +139,7 @@ describe Lingua::EN::Sentence do
   
     describe "sentences with URLs and abbreviation" do
       before(:each) do
-        text = "Many of these leading names now have their own website, e.g.  http://www.kaptest.com/. Hello, e.g. you don't know what you mean. I'm so angry about what you said about the U.S.A. or the u.S. or the U.S.S.R. ok."
+        text = "Many of these leading names now have their own website, e.g.  http://www.kaptest.com/. Hello, e.g. you don't know what you mean. I'm so angry about what you said about the U.S.A. or the u.S. or the U.S.S.R. ok. I ate cake on Dec. 21 for my birthday."
         @sentences = klass.sentences(text)
       end
   
@@ -147,7 +147,8 @@ describe Lingua::EN::Sentence do
         @sentences[0].should == "Many of these leading names now have their own website, e.g.  http://www.kaptest.com/."
         @sentences[1].should == "Hello, e.g. you don't know what you mean."
         @sentences[2].should == "I'm so angry about what you said about the U.S.A. or the u.S. or the U.S.S.R. ok."
-        @sentences.should have(3).things
+        @sentences[3].should == "I ate cake on Dec. 21 for my birthday."
+        @sentences.should have(4).things
       end
     end
   end
